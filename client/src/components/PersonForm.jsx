@@ -40,7 +40,9 @@ const createPersonHandler = (e) => {
       <label>Age</label>
       <input type="number" onChange={(e) => setAge(e.target.value)} />
       </div><br/>
+
       <input type="submit" value='Create Person'/>
+      
     </form>
     
   )

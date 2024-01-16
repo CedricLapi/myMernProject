@@ -2,6 +2,7 @@
 
 //import './App.css'
 import PersonForm from './components/PersonForm'
+import PersonList from './components/PersonList'
 
 function App() {
   
@@ -10,6 +11,7 @@ function App() {
     <>
     <h1>Welcome to MERN Stack</h1>
     <PersonForm />
+    <PersonList />
     </>
   )
 }
