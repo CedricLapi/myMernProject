@@ -2,8 +2,8 @@ import axios from "axios"
 import {useState, useEffect} from "react"
 
 
-const PersonForm = () => {
-
+const PersonForm = (props) => {
+const {person, setPerson} = props;
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
 const [age, setAge] = useState('')
@@ -13,8 +13,11 @@ const createPersonHandler = (e) => {
   axios.post('http://localhost:8000/api/person', {
     first_Name: firstName, last_Name: lastName, age
   })
-    .then((response) => console.log(response))
+    .then((response) => setPerson([...person, response.data]))
     .catch((err) => console.log(err))
+    setFirstName('')
+    setLastName('')
+    setAge('')
   }
 
 
@@ -28,17 +31,17 @@ const createPersonHandler = (e) => {
     <form onSubmit={createPersonHandler}>
       <div>
       <label>First Name</label>
-      <input type="text" onChange={(e) => setFirstName(e.target.value)} />
+      <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
       </div><br/>
 
       <div>
       <label>Last Name</label>
-      <input type="text" onChange={(e) => setLastName(e.target.value)} />
+      <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName} />
       </div><br/>
 
       <div>
       <label>Age</label>
-      <input type="number" onChange={(e) => setAge(e.target.value)} />
+      <input type="number" onChange={(e) => setAge(e.target.value)} value={age} />
       </div><br/>
 
       <input type="submit" value='Create Person'/>
